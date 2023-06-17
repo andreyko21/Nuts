@@ -81,3 +81,18 @@ function closeAllSelect(elmnt) {
 /*if the user clicks anywhere outside the select box,
 then close all select boxes:*/
 document.addEventListener("click", closeAllSelect);
+
+document.addEventListener("DOMContentLoaded", function () {
+  var burgerOpen = document.querySelectorAll(".icon-burger-menu");
+  var burgerClose = document.querySelector(".burger-exit");
+  var menu = document.querySelector(".header-menu-container");
+
+  burgerOpen[1].addEventListener("click", function () {
+    menu.classList.toggle("active");
+    console.log("open");
+  });
+  burgerClose.addEventListener("click", function () {
+    console.log("close");
+    menu.classList.remove("active");
+  });
+});

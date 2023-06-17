@@ -16,6 +16,7 @@ const size = require("gulp-size");
 const newer = require("gulp-newer");
 const browsersync = require("browser-sync").create();
 const fileinclude = require("gulp-file-include");
+const webp = require("gulp-webp");
 
 const paths = {
   html: {
@@ -42,6 +43,10 @@ const paths = {
   },
   images: {
     src: "src/assets/img/**.svg",
+    dest: "dist/images/",
+  },
+  webImg: {
+    src: "src/assets/img/**.jpg",
     dest: "dist/images/",
   },
   fonts: {
@@ -102,6 +107,19 @@ function styles() {
     )
     .pipe(gulp.dest(paths.styles.dest))
     .pipe(browsersync.stream());
+}
+
+function webpTask() {
+  return gulp
+    .src(paths.webImg.src)
+    .pipe(newer(paths.webImg.dest))
+    .pipe(webp())
+    .pipe(
+      size({
+        showFiles: true,
+      })
+    )
+    .pipe(gulp.dest(paths.webImg.dest));
 }
 
 // Обработка Java Script, Type Script и Coffee Script
@@ -169,7 +187,6 @@ function watch() {
 }
 
 // Таски для ручного запуска с помощью gulp clean, gulp html и т.д.
-
 exports.html = html;
 exports.styles = styles;
 exports.scripts = scripts;
@@ -180,6 +197,6 @@ exports.fonts = fonts;
 // Таск, который выполняется по команде gulp
 exports.default = gulp.series(
   html,
-  gulp.parallel(styles, scripts, img, fonts),
+  gulp.parallel(styles, scripts, img, fonts, webpTask),
   watch
 );
