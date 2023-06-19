@@ -46,7 +46,7 @@ const paths = {
     dest: "dist/images/",
   },
   webImg: {
-    src: "src/assets/img/**.jpg",
+    src: "src/assets/img/**.{jpg,png}",
     dest: "dist/images/",
   },
   fonts: {

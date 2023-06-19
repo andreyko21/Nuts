@@ -96,3 +96,13 @@ document.addEventListener("DOMContentLoaded", function () {
     menu.classList.remove("active");
   });
 });
+
+// Swiper
+document.addEventListener("DOMContentLoaded", function () {
+  var mySwiper = new Swiper(".swiper-container", {
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+});
