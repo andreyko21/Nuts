@@ -99,10 +99,112 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Swiper
 document.addEventListener("DOMContentLoaded", function () {
-  var mySwiper = new Swiper(".swiper-container", {
+  var mySwiper = new Swiper(".about-manufactures__swiper", {
+    slidesPerView: 1,
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  var mySwiper = new Swiper(".product-item__swiper", {
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var mySwiper = new Swiper(".swiper-news-block-swiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      // when window width is >= 320px
+      0: {
+        slidesPerView: 1,
+      },
+      // when window width is >= 480px
+      601: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      // when window width is >= 640px
+      961: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+    },
+  });
+});
+
+// map
+
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  const uluru = { lat: 46.423910, lng: 30.724514 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 17,
+    center: uluru,
+    disableDefaultUI: true,
+    styles: [
+      {
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [
+          {
+            lightness: 100,
+          },
+          {
+            visibility: "simplified",
+          },
+        ],
+      },
+      {
+        featureType: "water",
+        elementType: "geometry",
+        stylers: [
+          {
+            visibility: "on",
+          },
+          {
+            color: "#C6E2FF",
+          },
+        ],
+      },
+      {
+        featureType: "poi",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#C5E3BF",
+          },
+        ],
+      },
+      {
+        featureType: "road",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#D1D1B8",
+          },
+        ],
+      },
+    ],
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+  });
+}
+
+window.initMap = initMap;
