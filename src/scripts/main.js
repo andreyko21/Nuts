@@ -86,7 +86,10 @@ document.addEventListener("DOMContentLoaded", function () {
   var burgerOpen = document.querySelectorAll(".icon-burger-menu");
   var burgerClose = document.querySelector(".burger-exit");
   var menu = document.querySelector(".header-menu-container");
-
+  burgerOpen[0].addEventListener("click", function () {
+    menu.classList.toggle("active");
+    console.log("open");
+  });
   burgerOpen[1].addEventListener("click", function () {
     menu.classList.toggle("active");
     console.log("open");
@@ -149,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Initialize and add the map
 function initMap() {
   // The location of Uluru
-  const uluru = { lat: 46.423910, lng: 30.724514 };
+  const uluru = { lat: 46.42391, lng: 30.724514 };
   // The map, centered at Uluru
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 17,
@@ -208,3 +211,19 @@ function initMap() {
 }
 
 window.initMap = initMap;
+
+var currentUrl = window.location.href;
+
+document.addEventListener("DOMContentLoaded", function () {
+  var currentUrl = window.location.href;
+  var menuLinks = document.getElementsByClassName("menu__item");
+
+  for (var i = 0; i < menuLinks.length; i++) {
+    var link = menuLinks[i];
+    var linkUrl = link.href;
+
+    if (currentUrl === linkUrl) {
+      link.classList.add("active");
+    }
+  }
+});
