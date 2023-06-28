@@ -112,6 +112,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  var mySwiper = new Swiper(".text-block-with-swiper__swiper-block", {
+    allowTouchMove: false,
+    slidesPerView: 1,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
   var mySwiper = new Swiper(".product-item__swiper", {
     navigation: {
       nextEl: ".swiper-button-next",
@@ -226,4 +237,31 @@ document.addEventListener("DOMContentLoaded", function () {
       link.classList.add("active");
     }
   }
+});
+
+function openTab(nameTab, element) {
+  var i;
+  var x = document.getElementsByClassName("tabs-block__text-block-with-img");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  document.getElementById(nameTab).style.display = "flex";
+
+  var tabs = document.getElementsByClassName("tab-button");
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove("active");
+  }
+
+  // Додаємо клас "active" до обраної вкладки
+  element.classList.add("active");
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  var mySwiper = new Swiper(".swiper-news-block-swiper-big", {
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
 });
