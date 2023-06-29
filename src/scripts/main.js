@@ -265,3 +265,12 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  var mySwiper = new Swiper(".product-section__swiper-block", {
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+});
