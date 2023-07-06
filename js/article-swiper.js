@@ -1,0 +1,2 @@
+"use strict";document.addEventListener("DOMContentLoaded",function(){new Swiper(".article-swiper",{slidesPerView:3,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},breakpoints:{0:{enabled:!0,slidesPerView:2,spaceBetween:10},601:{enabled:!0,slidesPerView:3,direction:"horizontal",spaceBetween:10},961:{direction:"vertical",slidesPerView:3,spaceBetween:60}}})});
+//# sourceMappingURL=article-swiper.js.map
