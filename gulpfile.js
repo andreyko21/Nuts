@@ -17,8 +17,13 @@ const newer = require("gulp-newer");
 const browsersync = require("browser-sync").create();
 const fileinclude = require("gulp-file-include");
 const webp = require("gulp-webp");
+const flatten = require('gulp-flatten');
 
 const paths = {
+  favicon: {
+    src: 'src/favicons/Favicon.ico',
+    dest: 'dist/',
+  },
   html: {
     src: ["src/*.html", "src/*.pug"],
     dest: "dist/",
@@ -42,11 +47,11 @@ const paths = {
     dest: "dist/js/",
   },
   images: {
-    src: "src/assets/img/**.svg",
+    src: "src/assets/img/**/**.svg",
     dest: "dist/images/",
   },
   webImg: {
-    src: "src/assets/img/**.{jpg,png}",
+    src: "src/assets/img/**/**.{jpg,png}",
     dest: "dist/images/",
   },
   fonts: {
@@ -54,6 +59,11 @@ const paths = {
     dest: "dist/fonts/",
   },
 };
+
+function favicon() {
+  return gulp.src(paths.favicon.src)
+    .pipe(gulp.dest(paths.favicon.dest));
+}
 
 function html() {
   return gulp
@@ -93,12 +103,7 @@ function styles() {
         level: 2,
       })
     )
-    .pipe(
-      rename({
-        basename: "style",
-        suffix: ".min",
-      })
-    )
+    
     .pipe(sourcemaps.write("."))
     .pipe(
       size({
@@ -114,6 +119,7 @@ function webpTask() {
     .src(paths.webImg.src)
     .pipe(newer(paths.webImg.dest))
     .pipe(webp())
+    .pipe(flatten())
     .pipe(
       size({
         showFiles: true,
@@ -141,7 +147,6 @@ function scripts() {
         })
       )
       .pipe(uglify())
-      .pipe(concat("main.min.js"))
       .pipe(sourcemaps.write("."))
       .pipe(
         size({
@@ -160,9 +165,12 @@ function img() {
     .pipe(newer(paths.images.dest))
     .pipe(
       imagemin({
+        optimizationLevel: 5,
         progressive: true,
+        multipass: true
       })
     )
+    .pipe(flatten())
     .pipe(
       size({
         showFiles: true,
@@ -187,6 +195,7 @@ function watch() {
 }
 
 // Таски для ручного запуска с помощью gulp clean, gulp html и т.д.
+exports.favicon = favicon;
 exports.html = html;
 exports.styles = styles;
 exports.scripts = scripts;
@@ -197,6 +206,6 @@ exports.fonts = fonts;
 // Таск, который выполняется по команде gulp
 exports.default = gulp.series(
   html,
-  gulp.parallel(styles, scripts, img, fonts, webpTask),
+  gulp.parallel(styles, scripts, img, fonts, webpTask, favicon),
   watch
 );

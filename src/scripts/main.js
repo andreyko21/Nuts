@@ -1,3 +1,56 @@
+let map;
+
+function initMap() {
+  const uluru = { lat: 46.42391, lng: 30.724514 };
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 17,
+    center: uluru,
+    disableDefaultUI: true,
+    styles: [
+      /* ваш код стилей */
+    ],
+  });
+  const marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+  });
+}
+
+window.initMap = initMap;
+
+const mapObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      observer.unobserve(entry.target);
+      const script = document.createElement("script");
+      script.src =
+        "https://maps.googleapis.com/maps/api/js?key=AIzaSyAgXxhu9C81FFg0mKBFIY2n4LLxYeiOqpA&callback=initMap&v=weekly";
+      script.defer = true;
+      document.body.appendChild(script);
+    }
+  });
+});
+
+mapObserver.observe(document.getElementById("map"));
+
+document.addEventListener("DOMContentLoaded", function () {
+  var burgerOpen = document.querySelectorAll(".icon-burger-menu");
+  var burgerClose = document.querySelector(".burger-exit");
+  var menu = document.querySelector(".header-menu-container");
+  burgerOpen[0].addEventListener("click", function () {
+    menu.classList.toggle("active");
+    console.log("open");
+  });
+  burgerOpen[1].addEventListener("click", function () {
+    menu.classList.toggle("active");
+    console.log("open");
+  });
+  burgerClose.addEventListener("click", function () {
+    console.log("close");
+    menu.classList.remove("active");
+  });
+});
+
 var x, i, j, l, ll, selElmnt, a, b, c;
 /*look for any elements with the class "custom-select":*/
 x = document.getElementsByClassName("custom-select");
@@ -78,199 +131,5 @@ function closeAllSelect(elmnt) {
     }
   }
 }
-/*if the user clicks anywhere outside the select box,
-then close all select boxes:*/
+
 document.addEventListener("click", closeAllSelect);
-
-document.addEventListener("DOMContentLoaded", function () {
-  var burgerOpen = document.querySelectorAll(".icon-burger-menu");
-  var burgerClose = document.querySelector(".burger-exit");
-  var menu = document.querySelector(".header-menu-container");
-  burgerOpen[0].addEventListener("click", function () {
-    menu.classList.toggle("active");
-    console.log("open");
-  });
-  burgerOpen[1].addEventListener("click", function () {
-    menu.classList.toggle("active");
-    console.log("open");
-  });
-  burgerClose.addEventListener("click", function () {
-    console.log("close");
-    menu.classList.remove("active");
-  });
-});
-
-// Swiper
-document.addEventListener("DOMContentLoaded", function () {
-  var mySwiper = new Swiper(".about-manufactures__swiper", {
-    slidesPerView: 1,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  var mySwiper = new Swiper(".text-block-with-swiper__swiper-block", {
-    allowTouchMove: false,
-    slidesPerView: 1,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  var mySwiper = new Swiper(".product-item__swiper", {
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  var mySwiper = new Swiper(".swiper-news-block-swiper", {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    breakpoints: {
-      // when window width is >= 320px
-      0: {
-        slidesPerView: 1,
-      },
-      // when window width is >= 480px
-      601: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      // when window width is >= 640px
-      961: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-    },
-  });
-});
-
-// map
-
-// Initialize and add the map
-function initMap() {
-  // The location of Uluru
-  const uluru = { lat: 46.42391, lng: 30.724514 };
-  // The map, centered at Uluru
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 17,
-    center: uluru,
-    disableDefaultUI: true,
-    styles: [
-      {
-        featureType: "road",
-        elementType: "geometry",
-        stylers: [
-          {
-            lightness: 100,
-          },
-          {
-            visibility: "simplified",
-          },
-        ],
-      },
-      {
-        featureType: "water",
-        elementType: "geometry",
-        stylers: [
-          {
-            visibility: "on",
-          },
-          {
-            color: "#C6E2FF",
-          },
-        ],
-      },
-      {
-        featureType: "poi",
-        elementType: "geometry.fill",
-        stylers: [
-          {
-            color: "#C5E3BF",
-          },
-        ],
-      },
-      {
-        featureType: "road",
-        elementType: "geometry.fill",
-        stylers: [
-          {
-            color: "#D1D1B8",
-          },
-        ],
-      },
-    ],
-  });
-  // The marker, positioned at Uluru
-  const marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
-  });
-}
-
-window.initMap = initMap;
-
-var currentUrl = window.location.href;
-
-document.addEventListener("DOMContentLoaded", function () {
-  var currentUrl = window.location.href;
-  var menuLinks = document.getElementsByClassName("menu__item");
-
-  for (var i = 0; i < menuLinks.length; i++) {
-    var link = menuLinks[i];
-    var linkUrl = link.href;
-
-    if (currentUrl === linkUrl) {
-      link.classList.add("active");
-    }
-  }
-});
-
-function openTab(nameTab, element) {
-  var i;
-  var x = document.getElementsByClassName("tabs-block__text-block-with-img");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  document.getElementById(nameTab).style.display = "flex";
-
-  var tabs = document.getElementsByClassName("tab-button");
-  for (var i = 0; i < tabs.length; i++) {
-    tabs[i].classList.remove("active");
-  }
-
-  // Додаємо клас "active" до обраної вкладки
-  element.classList.add("active");
-}
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  var mySwiper = new Swiper(".swiper-news-block-swiper-big", {
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  var mySwiper = new Swiper(".product-section__swiper-block", {
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-});
