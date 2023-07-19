@@ -1,0 +1,2 @@
+"use strict";window.onload=function(){for(var e=document.getElementsByName("delivery"),t=document.getElementById("novaPoshtaField"),n=document.getElementById("courierField"),l=0,o=e.length;l<o;l++)e[l].addEventListener("change",function(){t.style.display="none",n.style.display="none","nova_poshta"===this.value?t.style.display="block":"courier"===this.value&&(n.style.display="block")});for(l=0,o=e.length;l<o;l++)if(e[l].checked){e[l].dispatchEvent(new Event("change"));break}};
+//# sourceMappingURL=order-processing.js.map
