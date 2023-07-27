@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/basket-pop.scss"],"names":[],"mappings":"AAAA,cACI,SAAA,SACA,MAAA,EACA,UAAA,MACA,MAAA,KACA,iBAAA","file":"basket-pop.css","sourcesContent":[".basket-block{\r\n    position: absolute;\r\n    right: 0;\r\n    max-width: 428px;\r\n    width: 100%;\r\n    background-color: white;\r\n}"]}
