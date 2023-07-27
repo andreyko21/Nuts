@@ -1,2 +1,0 @@
-"use strict";document.addEventListener("DOMContentLoaded",function(){var e=document.querySelectorAll(".icon-burger-menu"),t=document.querySelector(".burger-exit"),c=document.body,n=document.querySelector(".header-menu-container");e[0].addEventListener("click",function(){n.classList.toggle("active"),document.body.classList.toggle("active")}),e[1].addEventListener("click",function(){n.classList.toggle("active"),c.classList.add("hidden")}),t.addEventListener("click",function(){n.classList.remove("active")})});
-//# sourceMappingURL=burger-menu.js.map
